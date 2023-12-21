@@ -8,8 +8,8 @@
   </head>
   <body class="h-[100dvh] grid grid-cols-3 grid-rows-2">
     <aside class="bg-emerald-300 row-span-2 flex flex-col justify-between py-5 px-2">
-      <h1 class="text-2xl	font-bold px-20 py-2"> Calculadora de investimentos</h1>
-      <img class="w-full" src="imagem.webp" alt="Imagem de Calculadora e dinheiro">
+      <h1 class="text-2xl	font-bold flex flex-col items-center"> Calculadora de investimentos</h1>
+      <img class="w-full flex flex-col items-center" src="imagem.webp" alt="Imagem de Calculadora e dinheiro">
       <form id="investment-form" class="w-full ">
         <div class="flex w-full flex-col px-4 my-2 h-[4.25rem]">
           <label for="starting-amount" class="font-bold text-gray-700">Investimento Inicial</label>
@@ -59,14 +59,14 @@
         <button id="clear-form" class="w-1/2 rounded-lg bg-emerald-950 text-slate-200 hover:bg-emerald-800 text-2xl">Limpar</button>
       </div>
     </aside>   
-    <main class="h-full">
-      <section id="charts-container">
-        <div class="h-[36dvh]">
-          <p>Resultado final</p>
+    <main class="row-span-2 col-span-2">
+      <section id="charts-container" class="h-full">
+        <div class="h-[36%] flex flex-col items-center pb-10">
+          <p class="font-bold text-lg">Resultado final</p>
           <canvas id="final-money-distribution"></canvas>
         </div>
-        <div class="h-[56dvh]">
-          <p>Progressão</p>
+        <div class="h-[56%] flex flex-col items-center">
+          <p class="font-bold text-lg">Progressão</p>
           <canvas id="progression"></canvas>
         </div>
       </section>
