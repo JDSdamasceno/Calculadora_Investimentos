@@ -1,10 +1,15 @@
 import { generateReturnsArray } from "./src/investimentGoals";
 
 const form = document.getElementById("investment-form");
+const clearFormButton = document.getElementById("clear-form");
 const calculateButton = document.getElementById("calculate-results");
 
 function renderProgression(evt) {
   evt.preventDefault();
+  if (document.querySelector(".error")) {
+    return;
+  }
+
   const startingAmount = Number(
     form["starting-amount"].value.replace(",", ".")
   );
@@ -35,9 +40,49 @@ function renderProgression(evt) {
 
   console.log(returnsArray);
 }
+
+function clearForm() {
+  form["starting-amount"].value = "";
+  form["additional-contribution"].value = "";
+  form["time-amount"].value = "";
+  form["return-rate"].value = "";
+  form["tax-rate"].value = "";
+
+  const errorInputContainers = document.querySelectorAll(".error");
+
+  for (const errorInputContainer of errorInputContainers) {
+    errorInputContainer.classList.remove("error");
+    errorInputContainer.parentElement.querySelector("p").remove();
+  }
+}
+
 function validateInput(evt) {
   if (evt.target.value === "") {
     return;
+  }
+
+  const { parentElement } = evt.target;
+  const grandParentElement = evt.target.parentElement.parentElement;
+  const inputValue = evt.target.value.replace(",", ".");
+
+  if (
+    !parentElement.classList.contains("error") &&
+    (isNaN(inputValue) || Number(inputValue) <= 0)
+  ) {
+    const errorTextElement = document.createElement("p");
+    errorTextElement.classList.add("text-red-700");
+    errorTextElement.classList.add("font-bold");
+    errorTextElement.innerText = "Insira um valor númerico e maior do que Zero";
+
+    parentElement.classList.add("error");
+    grandParentElement.appendChild(errorTextElement);
+  } else if (
+    parentElement.classList.contains("error") &&
+    !isNaN(inputValue) &&
+    Number(inputValue) > 0
+  ) {
+    parentElement.classList.remove("error");
+    grandParentElement.querySelector("p").remove();
   }
 }
 
@@ -47,5 +92,6 @@ for (const formElement of form) {
   }
 }
 
-// form.addEventListener("submit", renderProgression);
-calculateButton.addEventListener("click", renderProgression);
+form.addEventListener("submit", renderProgression);
+//calculateButton.addEventListener("click", renderProgression);
+clearFormButton.addEventListener("click", clearForm);

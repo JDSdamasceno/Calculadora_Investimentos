@@ -10,11 +10,11 @@ export function generateReturnsArray(
   returnRate = 0,
   returnTimeFrame = "monthly"
 ) {
-  if (!timeHorizon || !startingAmount) {
-    throw new Error(
-      "Investimento inicial e prazo devem ser preenchidos com valores positivos"
-    );
-  }
+  // if (!timeHorizon || !startingAmount) {
+  //   throw new Error(
+  //     "Investimento inicial e prazo devem ser preenchidos com valores positivos"
+  //   );
+  // }
 
   const finalReturnRate =
     returnTimeFrame === "monthly"
