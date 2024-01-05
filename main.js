@@ -219,6 +219,10 @@ nextButton.addEventListener("click", () => {
   carouselEl.scrollLeft += mainEl.clientWidth;
 });
 
+previoustButton.addEventListener("click", () => {
+  carouselEl.scrollLeft -= mainEl.clientWidth;
+});
+
 form.addEventListener("submit", renderProgression);
 //calculateButton.addEventListener("click", renderProgression);
 clearFormButton.addEventListener("click", clearForm);
